@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         internshipTracker tracker = new internshipTracker();
+        tracker.loadApplication();
         boolean running = true;
         while (running) {
             System.out.println("\nStudent Internship Tracker");
@@ -27,6 +28,7 @@ public class Main {
 
                 Application application = new Application(companyName, positionTitle, dateApplied, status);
                 tracker.addApplication(application);
+                tracker.saveApplication();
             } else if (choose.equals("2")) {
                 tracker.viewApplications();
             } else if (choose.equals("3")) {

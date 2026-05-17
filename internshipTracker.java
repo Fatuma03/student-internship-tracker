@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+import java.util.Scanner;
 
 public class internshipTracker {
     private ArrayList<Application> applications;
@@ -21,5 +25,42 @@ public class internshipTracker {
                 System.out.println((i + 1) + ". " + applications.get(i));
             }
         }
+    }
+
+    public void saveApplication() {
+        try {
+            FileWriter writer = new FileWriter("applications.txt");
+
+            for (int i = 0; i < applications.size(); i++) {
+                Application app = applications.get(i);
+                writer.write(app.getCompanyName() + "," +
+                        app.getPositionTitle() + "," +
+                        app.getDateApplied() + "," +
+                        app.getStatus() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error ocurred while saving application.");
+        }
+
+    }
+
+    public void loadApplication() {
+        try {
+            File file = new File("applications.txt");
+            Scanner fileReader = new Scanner(file);
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                String[] parts = line.split(",");
+                if (parts.length == 4) {
+                    Application app = new Application(parts[0], parts[1], parts[2], parts[3]);
+                    applications.add(app);
+                }
+            }
+            fileReader.close();
+        } catch (IOException e) {
+            System.out.println("No saved Applications found yet");
+        }
+
     }
 }
