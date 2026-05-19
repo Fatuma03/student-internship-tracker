@@ -10,7 +10,8 @@ public class Main {
             System.out.println("\nStudent Internship Tracker");
             System.out.println("1. Add an application");
             System.out.println("2. View all  application");
-            System.out.println("3. Exit");
+            System.out.println("3. Update Application Status");
+            System.out.println("4. Exit.");
             System.out.print("Choose an Option: ");
             String choose = input.nextLine();
             if (choose.equals("1")) {
@@ -32,6 +33,15 @@ public class Main {
             } else if (choose.equals("2")) {
                 tracker.viewApplications();
             } else if (choose.equals("3")) {
+                tracker.viewApplications();
+                System.out.println("Choose an application");
+                int ApplicationNumber = Integer.parseInt(input.nextLine());
+                System.out.println("Enter a new status");
+                String newStatus = input.nextLine();
+                tracker.updateApplicationStatus(ApplicationNumber - 1, newStatus);
+                tracker.saveApplication();
+
+            } else if (choose.equals("4")) {
                 running = false;
                 System.out.println("Goodbye!");
             } else {

@@ -27,6 +27,17 @@ public class internshipTracker {
         }
     }
 
+    public void updateApplicationStatus(int index, String newSatus) {
+        if (index >= 0 && index < applications.size()) {
+            Application app = applications.get(index);
+            app.setStatus(newSatus);
+            System.out.println("Application Status updated Successfully");
+        } else {
+            System.out.println("Invalid application Number");
+        }
+
+    }
+
     public void saveApplication() {
         try {
             FileWriter writer = new FileWriter("applications.txt");
